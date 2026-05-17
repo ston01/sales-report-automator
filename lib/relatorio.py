@@ -1,10 +1,7 @@
 from fpdf import FPDF
 from lib import analise
 
-def gerar_relatorio(df, saida_pdf="data/saida/relatorio.pdf"):
-    pdf = FPDF()
-    pdf.add_page()
-
+def gerar_titulo(pdf):
     pdf.set_font('Arial', 'B', size=20)
     pdf.cell(0, 10, 'RELATÓRIO DE VENDAS', ln=True, align="C")
     pdf.ln(3)
@@ -12,6 +9,8 @@ def gerar_relatorio(df, saida_pdf="data/saida/relatorio.pdf"):
     pdf.ln(10)
     pdf.cell(0, 10, "", ln=True)
 
+
+def analise_completa(pdf, df):
     pdf.set_font('Arial', 'B', size=16)
     pdf.cell(0, 10, "Análise completa: ", ln=True)
     pdf.set_font('Arial', size=16)
@@ -21,6 +20,8 @@ def gerar_relatorio(df, saida_pdf="data/saida/relatorio.pdf"):
     pdf.cell(0, 10, f"Ticket médio: R${float(analise.ticket_medio(df)):.2f}", ln=True)
     pdf.cell(0, 10, "", ln=True)
 
+
+def vendas_por_vendedor(pdf, df):
     pdf.set_font('Arial', 'B', size=16)
     pdf.cell(0, 10, "Vendas por vendedor: ", ln=True)
     pdf.set_font('Arial', size=16)
@@ -30,6 +31,8 @@ def gerar_relatorio(df, saida_pdf="data/saida/relatorio.pdf"):
         pdf.cell(0, 10, f"{vendedor}: R${float(valor_limpo):.2f}", ln=True)
     pdf.cell(0, 10, "", ln=True)
 
+
+def ranking_vendedores(pdf, df):
     pdf.set_font('Arial', 'B', size=16)
     pdf.cell(0, 10, "Ranking de vendedores: ", ln=True)
     pdf.set_font('Arial', size=16)
@@ -39,9 +42,8 @@ def gerar_relatorio(df, saida_pdf="data/saida/relatorio.pdf"):
         pdf.cell(0, 10, f"{vendedor}: R${float(valor_limpo):.2f}", ln=True)
     pdf.cell(0, 10, '', ln=True)
 
-    pdf.add_page()
-    pdf.ln(10)
 
+def vendas_por_produto(pdf, df):
     pdf.set_font('Arial', 'B', size=16)
     pdf.cell(0, 10, "Vendas por produto: ", ln=True)
     pdf.set_font('Arial', size=16)
@@ -51,6 +53,8 @@ def gerar_relatorio(df, saida_pdf="data/saida/relatorio.pdf"):
         pdf.cell(0, 10, f"{produto}: R${float(valor_limpo):.2f}", ln=True)
     pdf.cell(0, 10, "", ln=True)
 
+
+def ranking_produtos(pdf, df):
     pdf.set_font('Arial', 'B', size=16)
     pdf.cell(0, 10, "Ranking de produtos: ", ln=True)
     pdf.set_font('Arial', size=16)
@@ -60,6 +64,8 @@ def gerar_relatorio(df, saida_pdf="data/saida/relatorio.pdf"):
         pdf.cell(0, 10, f"{produto}: R${float(valor_limpo):.2f}", ln=True)
     pdf.cell(0, 10, "", ln=True)
 
+
+def vendas_por_mes(pdf, df):
     pdf.set_font('Arial', 'B', size=16)
     pdf.cell(0, 10, "Vendas por mês: ", ln=True)
     pdf.set_font('Arial', size=16)
@@ -69,6 +75,8 @@ def gerar_relatorio(df, saida_pdf="data/saida/relatorio.pdf"):
         pdf.cell(0, 10, f"{mes}: R${float(valor_limpo):.2f}", ln=True)
     pdf.cell(0, 10, "", ln=True)
 
+
+def crescimento_mensal(pdf, df):
     pdf.set_font('Arial', 'B', size=16)
     pdf.cell(0, 10, "Crescimento mensal: ", ln=True)
     pdf.set_font('Arial', size=16)
@@ -77,6 +85,8 @@ def gerar_relatorio(df, saida_pdf="data/saida/relatorio.pdf"):
         pdf.cell(0, 10, f"{mes}: {valor}", ln=True)
     pdf.cell(0, 10, "", ln=True)
 
+
+def participacao_vendedores(pdf, df):
     pdf.set_font('Arial', 'B', size=16)
     pdf.cell(0, 10, "Participação por vendedor: ", ln=True)
     pdf.set_font('Arial', size=16)
@@ -85,9 +95,8 @@ def gerar_relatorio(df, saida_pdf="data/saida/relatorio.pdf"):
         pdf.cell(0, 10, f"{vendedor}: {valor}", ln=True)
     pdf.cell(0, 10, "", ln=True)
 
-    pdf.add_page()
-    pdf.ln(10)
 
+def participacao_produtos(pdf, df):
     pdf.set_font('Arial', 'B', size=16)
     pdf.cell(0, 10, "Participação por produto: ", ln=True)
     pdf.set_font('Arial', size=16)
@@ -96,5 +105,23 @@ def gerar_relatorio(df, saida_pdf="data/saida/relatorio.pdf"):
         pdf.cell(0, 10, f"{produto}: {valor}", ln=True)
     pdf.cell(0, 10, "", ln=True)
 
+
+def gerar_relatorio(df, saida_pdf="data/saida/relatorio.pdf"):
+    pdf = FPDF()
+    pdf.add_page()
+    gerar_titulo(pdf)
+    analise_completa(pdf, df)
+    vendas_por_vendedor(pdf, df)
+    ranking_vendedores(pdf, df)
+    pdf.add_page()
+    pdf.ln(10)
+    vendas_por_produto(pdf, df)
+    ranking_produtos(pdf, df)
+    vendas_por_mes(pdf, df)
+    crescimento_mensal(pdf, df)
+    participacao_vendedores(pdf, df)
+    pdf.add_page()
+    pdf.ln(10)
+    participacao_produtos(pdf, df)
     pdf.output(saida_pdf)
     print(f"Relatório gerado com sucesso em: {saida_pdf}")
