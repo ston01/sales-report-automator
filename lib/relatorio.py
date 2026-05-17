@@ -51,5 +51,50 @@ def gerar_relatorio(df, saida_pdf="data/saida/relatorio.pdf"):
         pdf.cell(0, 10, f"{produto}: R${float(valor_limpo):.2f}", ln=True)
     pdf.cell(0, 10, "", ln=True)
 
+    pdf.set_font('Arial', 'B', size=16)
+    pdf.cell(0, 10, "Ranking de produtos: ", ln=True)
+    pdf.set_font('Arial', size=16)
+    ranking_produto = analise.ranking_produtos(df)
+    for produto, valor in ranking_produto.items():
+        valor_limpo = str(valor).replace("R$", "").strip()
+        pdf.cell(0, 10, f"{produto}: R${float(valor_limpo):.2f}", ln=True)
+    pdf.cell(0, 10, "", ln=True)
+
+    pdf.set_font('Arial', 'B', size=16)
+    pdf.cell(0, 10, "Vendas por mês: ", ln=True)
+    pdf.set_font('Arial', size=16)
+    vendas_mes = analise.vendas_por_mes(df)
+    for mes, valor in vendas_mes.items():
+        valor_limpo = str(valor).replace("R$", "").strip()
+        pdf.cell(0, 10, f"{mes}: R${float(valor_limpo):.2f}", ln=True)
+    pdf.cell(0, 10, "", ln=True)
+
+    pdf.set_font('Arial', 'B', size=16)
+    pdf.cell(0, 10, "Crescimento mensal: ", ln=True)
+    pdf.set_font('Arial', size=16)
+    crescimento = analise.crescimento_mensal(df)
+    for mes, valor in crescimento.items():
+        pdf.cell(0, 10, f"{mes}: {valor}", ln=True)
+    pdf.cell(0, 10, "", ln=True)
+
+    pdf.set_font('Arial', 'B', size=16)
+    pdf.cell(0, 10, "Participação por vendedor: ", ln=True)
+    pdf.set_font('Arial', size=16)
+    participacao_vendedor = analise.participacao_vendedores(df)
+    for vendedor, valor in participacao_vendedor.items():
+        pdf.cell(0, 10, f"{vendedor}: {valor}", ln=True)
+    pdf.cell(0, 10, "", ln=True)
+
+    pdf.add_page()
+    pdf.ln(10)
+
+    pdf.set_font('Arial', 'B', size=16)
+    pdf.cell(0, 10, "Participação por produto: ", ln=True)
+    pdf.set_font('Arial', size=16)
+    participacao_produto = analise.participacao_produtos(df)
+    for produto, valor in participacao_produto.items():
+        pdf.cell(0, 10, f"{produto}: {valor}", ln=True)
+    pdf.cell(0, 10, "", ln=True)
+
     pdf.output(saida_pdf)
     print(f"Relatório gerado com sucesso em: {saida_pdf}")
