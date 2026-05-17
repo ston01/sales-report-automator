@@ -17,34 +17,40 @@ def ticket_medio(df):
 
 
 def vendas_por_vendedor(df):
-    return df.groupby('vendedor')['valor'].sum().sort_values(ascending=False)
+    resultado = df.groupby('vendedor')['valor'].sum().sort_values(ascending=False)
+    return resultado.apply(lambda x: f"R$ {x:.2f}")
 
 
 def ranking_vendedores(df, top=5):
-    return vendas_por_vendedor(df).head(top)
+    resultado = vendas_por_vendedor(df).head(top)
+    return resultado.round(2)
 
 
 def vendas_por_produto(df):
-    return df.groupby('produto')['valor'].sum().sort_values(ascending=False)
+    resultado = df.groupby('produto')['valor'].sum().sort_values(ascending=False)
+    return resultado.apply(lambda x: f"R$ {x:,.2f}")
 
 
 def ranking_produtos(df, top=5):
-    return vendas_por_produto(df).head(top)
+    return vendas_por_produto(df).head(top).round(2)
 
 
 def vendas_por_mes(df):
     df['data'] = pd.to_datetime(df['data'])
-    return df.groupby(df['data'].dt.to_period('M'))['valor'].sum()
+    resultado = df.groupby(df['data'].dt.to_period('M'))['valor'].sum().round(2)
+    return resultado.apply(lambda x: f"{x:.2f}")
 
 
 def crescimento_mensal(df):
     vendas_mensais = vendas_por_mes(df)
-    return vendas_mensais.pct_change().fillna(0) * 100
+    resultado = vendas_mensais.pct_change().fillna(0) * 100
+    return resultado.round(2).astype(str) + " %"
 
 
 def participacao_vendedores(df):
     total = df['valor'].sum()
-    return (df.groupby('vendedor')['valor'].sum() / total * 100).sort_values(ascending=False)
+    resultado = (df.groupby('vendedor')['valor'].sum() / total * 100).round(2).sort_values(ascending=False)
+    return resultado.astype(str) + " %"
 
 
 def participacao_produtos(df):

@@ -17,7 +17,7 @@ def tratar_planilha(df):
 def tratar_dados(df):
     df = limpar_nulos(df)
     df = limpar_duplicados(df)
-    print("Dados limpos com sucesso!")
+    print("\nDados limpos com sucesso!")
     df.to_excel("data/saida/planilha_tratada.xlsx", index=False)
-    print("Planilha tratada salva em data/saida/planilha_tratada.xlsx")
+    print("Planilha tratada salva em data/saida/planilha_tratada.xlsx\n")
     return df

@@ -11,8 +11,8 @@ def ler_planilha(nome_arquivo: str):
 
 
 def ler_dados():
-    nome_arquivo = input("Digite o nome da planilha: ")
+    nome_arquivo = input("Nome da planilha: ")
     df = ler_planilha(nome_arquivo)
-    print("Planilha carregada com sucesso!")
+    print("Planilha carregada com sucesso!\n")
     print(df.head())
     return df
