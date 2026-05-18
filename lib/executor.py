@@ -2,7 +2,6 @@ from lib.leitor import ler_dados
 from lib.tratamento import tratar_dados
 from lib.analise import analise_completa
 from lib.relatorio import gerar_relatorio
-import pandas as pd
 
 def executar():
     try:
