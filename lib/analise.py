@@ -38,7 +38,7 @@ def ranking_produtos(df, top=5):
 def vendas_por_mes(df):
     df['data'] = pd.to_datetime(df['data'])
     resultado = df.groupby(df['data'].dt.to_period('M'))['valor'].sum().round(2)
-    resultado = resultado.apply(lambda x: f"{x:.2f}")
+    resultado = resultado.apply(lambda x: f"R$ {x:.2f}")
     resultado.index = resultado.index.astype(str)  # <-- adicione isso
     return resultado
 

@@ -1,5 +1,25 @@
+from datetime import datetime
 from fpdf import FPDF
 from lib import analise
+
+class RelatorioPDF(FPDF):
+    def __init__(self, titulo, gerado_em, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.titulo = titulo
+        self.gerado_em = gerado_em
+
+    def header(self):
+        self.set_font("Arial", "B", 12)
+        self.cell(0, 10, self.titulo, ln=True, align="C")
+        self.set_font("Arial", size=9)
+        self.cell(0, 8, f"Gerado em: {self.gerado_em}", ln=True, align="C")
+        self.ln(4)
+
+    def footer(self):
+        self.set_y(-15)
+        self.set_font("Arial", "I", 8)
+        self.cell(0, 10, f"Página {self.page_no()}/{{nb}}", align="C")
+
 
 def gerar_titulo(pdf):
     pdf.set_font('Arial', 'B', size=20)
@@ -107,7 +127,9 @@ def participacao_produtos(pdf, df):
 
 
 def gerar_relatorio(df, saida_pdf="data/saida/relatorio.pdf"):
-    pdf = FPDF()
+    gerado_em = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    pdf = RelatorioPDF('Sistema Automator', gerado_em)
+    pdf.alias_nb_pages()
     pdf.add_page()
     gerar_titulo(pdf)
     analise_completa(pdf, df)
@@ -119,9 +141,9 @@ def gerar_relatorio(df, saida_pdf="data/saida/relatorio.pdf"):
     ranking_produtos(pdf, df)
     vendas_por_mes(pdf, df)
     crescimento_mensal(pdf, df)
-    participacao_vendedores(pdf, df)
     pdf.add_page()
     pdf.ln(10)
+    participacao_vendedores(pdf, df)
     participacao_produtos(pdf, df)
     pdf.output(saida_pdf)
     print(f"Relatório gerado com sucesso em: {saida_pdf}")
