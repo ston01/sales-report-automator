@@ -38,7 +38,9 @@ def ranking_produtos(df, top=5):
 def vendas_por_mes(df):
     df['data'] = pd.to_datetime(df['data'])
     resultado = df.groupby(df['data'].dt.to_period('M'))['valor'].sum().round(2)
-    return resultado.apply(lambda x: f"{x:.2f}")
+    resultado = resultado.apply(lambda x: f"{x:.2f}")
+    resultado.index = resultado.index.astype(str)  # <-- adicione isso
+    return resultado
 
 
 def crescimento_mensal(df):
@@ -67,25 +69,25 @@ def analise_completa(df):
     print(f"Ticket médio: R$ {ticket_medio(df):,.2f}\n")
 
     print('=== VENDAS POR VENDEDOR ===')
-    print(vendas_por_vendedor(df), "\n")
+    print(vendas_por_vendedor(df).to_string(), "\n")
 
     print('=== RANKING DE VENDEDORES ===')
-    print(ranking_vendedores(df), "\n")
+    print(ranking_vendedores(df).to_string(), "\n")
 
     print('=== VENDAS POR PRODUTO ===')
-    print(vendas_por_produto(df), "\n")
+    print(vendas_por_produto(df).to_string(), "\n")
 
     print('=== RANKING DE PRODUTOS ===')
-    print(ranking_produtos(df), "\n")
+    print(ranking_produtos(df).to_string(), "\n")
 
     print('=== VENDAS POR MÊS ===')
-    print(vendas_por_mes(df), "\n")
+    print(vendas_por_mes(df).to_string(), "\n")
 
     print('=== CRESCIMENTO MENSAL (%) ===')
-    print(crescimento_mensal(df), "\n")
+    print(crescimento_mensal(df).to_string(), "\n")
 
     print('=== PARTICIPAÇÃO DOS VENDEDORES (%) ===')
-    print(participacao_vendedores(df), "\n")
+    print(participacao_vendedores(df).to_string(), "\n")
 
     print('=== PARTICIPAÇÃO DOS PRODUTOS (%) ===')
-    print(participacao_produtos(df), "\n")
+    print(participacao_produtos(df).to_string(), "\n")
