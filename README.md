@@ -33,7 +33,9 @@ Este projeto marca um avanço importante na minha jornada como desenvolvedor, co
 ---
 
 ## 📂 Estrutura do Projeto
-sales-report-automator
+
+```text
+sales-report-automator/
 ├── data/
 │   ├── entrada/          # Planilhas originais
 │   └── saida/            # Relatórios e planilhas tratadas
@@ -47,6 +49,7 @@ sales-report-automator
 ├── main.py               # Ponto de entrada do programa
 ├── LICENSE               # Licença de uso
 └── README.md             # Documentação do projeto
+```
 
 ---
 
@@ -63,7 +66,7 @@ git clone [https://github.com/ston01/sales-report-automator.git](https://github.
 ```
 Acesse o diretório do projeto:
 ```bash
-cd PROJETO_CADASTRO
+cd sales-report-automator
 python -m pip install openpyxl
 ```
 Inicie o programa:
@@ -80,21 +83,25 @@ Se você deseja apenas testar ou utilizar o software no Windows sem precisar ins
 
 3. Extraia o conteúdo e certifique-se de que o arquivo dados.db está localizado na mesma pasta que o main.exe.
 
-4, Dê um duplo clique em main.exe para rodar.
+4. Dê um duplo clique em main.exe para rodar.
 
 ---
 
-🧠 Aprendizados Relevantes
-Automação de relatórios: eliminei tarefas manuais repetitivas.
+## 🧠 Aprendizados Relevantes
+- Automação de relatórios: eliminei tarefas manuais repetitivas.
 
-Manipulação de dados: domínio prático de Pandas.
+- Manipulação de dados: domínio prático de Pandas.
 
-Modularização: código organizado em arquivos com responsabilidades claras.
+- Modularização: código organizado em arquivos com responsabilidades claras.
 
-Documentação: criação de README e estrutura de projeto profissional.
+- Documentação: criação de README e estrutura de projeto profissional.
 
-Portfólio: projeto pronto para mostrar habilidades em freelances e oportunidades.
+- Portfólio: projeto pronto para mostrar habilidades em freelances e oportunidades.
 
-👤 Autor
-Desenvolvido com dedicação por Emanuel  
+---
+
+## 👤 Autor
+
+Desenvolvido com dedicação por Emanuel 
+
 GitHub: @ston01
