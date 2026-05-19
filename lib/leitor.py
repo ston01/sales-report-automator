@@ -10,7 +10,7 @@ def ler_planilha(nome_arquivo: str):
     pasta_entrada = Path("data/entrada")
     caminho_arquivo = pasta_entrada / nome_arquivo
     if not caminho_arquivo.exists():
-        raise FileNotFoundError(f"\nArquivo {caminho_arquivo} não encontrado.")
+        raise FileNotFoundError(f"\033[31m\nArquivo {caminho_arquivo} não encontrado.\033[0m")
     df = pd.read_excel(caminho_arquivo)
     return df
 
@@ -19,8 +19,13 @@ def ler_dados():
     while True:
         try:
             nome_arquivo = input("Nome da planilha: ")
+            if not nome_arquivo:    
+                print("\033[31m\nNenhum nome de arquivo fornecido.\033[0m")
+                input("Pressione ENTER para tentar novamente...")
+                limpar_tela()
+                continue
             df = ler_planilha(nome_arquivo)
-            print("\nPlanilha carregada com sucesso!\n")
+            print("\033[32mPlanilha carregada com sucesso!\n\033[0m")
             print(df.head())
             return df
         except FileNotFoundError as e:
@@ -28,12 +33,12 @@ def ler_dados():
             input("Pressione ENTER para tentar novamente...")
             limpar_tela()
         except KeyboardInterrupt:
-            print("\nProcesso interrompido pelo usuário.")
+            print("\033[33mProcesso interrompido pelo usuário.\033[0m")
             exit()
         except EOFError:
-            print("\nEntrada finalizada pelo usuário.")
+            print("\033[33m\nEntrada finalizada pelo usuário.\033[0m")
             exit()
         except Exception as e:
-            print(f"Erro ao ler a planilha: {e}")
+            print(f"\033[31mErro ao ler a planilha: {e}\033[0m")
             input("Pressione ENTER para tentar novamente...")
             limpar_tela()

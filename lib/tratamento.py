@@ -57,7 +57,7 @@ def tratar_dados(df: pd.DataFrame):
     linhas_depois = len(df)
     removidas = linhas_antes - linhas_depois
 
-    print("\nDados limpos com sucesso!")
+    print("\033[032m\nDados limpos com sucesso!\033[0m\n")
     print(f"Linhas antes: {linhas_antes}")
     print(f"Linhas depois: {linhas_depois}")
     print(f"Linhas removidas: {removidas}\n")

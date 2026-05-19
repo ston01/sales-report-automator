@@ -146,4 +146,4 @@ def gerar_relatorio(df, saida_pdf="data/saida/relatorio.pdf"):
     participacao_vendedores(pdf, df)
     participacao_produtos(pdf, df)
     pdf.output(saida_pdf)
-    print(f"Relatório gerado com sucesso em: {saida_pdf}")
+    print(f"\033[32mRelatório gerado com sucesso em: {saida_pdf}\033[0m")

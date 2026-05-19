@@ -62,6 +62,7 @@ def participacao_produtos(df):
 
 
 def analise_completa(df):
+    print('\033[032m\nAnálise feita com sucesso!\033[0m\n')
     print('=== ANÁLISE COMPLETA ===')
     print(f"Total de vendas: R$ {total_vendas(df):,.2f}")
     print(f"Número de clientes únicos: {clientes_unicos(df)}")
