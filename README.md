@@ -87,7 +87,7 @@ Se você deseja apenas testar ou utilizar o software no Windows sem precisar ins
 
 ---
 
-🧠 Aprendizados Relevantes
+## 🧠 Aprendizados Relevantes
 - Automação de relatórios: eliminei tarefas manuais repetitivas.
 
 - Manipulação de dados: domínio prático de Pandas.
@@ -98,6 +98,10 @@ Se você deseja apenas testar ou utilizar o software no Windows sem precisar ins
 
 - Portfólio: projeto pronto para mostrar habilidades em freelances e oportunidades.
 
-👤 Autor
-Desenvolvido com dedicação por Emanuel  
+---
+
+## 👤 Autor
+
+Desenvolvido com dedicação por Emanuel 
+
 GitHub: @ston01
