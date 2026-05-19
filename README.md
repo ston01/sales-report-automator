@@ -66,7 +66,7 @@ git clone [https://github.com/ston01/sales-report-automator.git](https://github.
 ```
 Acesse o diretório do projeto:
 ```bash
-cd PROJETO_CADASTRO
+cd sales-report-automator
 python -m pip install openpyxl
 ```
 Inicie o programa:
